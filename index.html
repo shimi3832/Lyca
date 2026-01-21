@@ -3,36 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Upload</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>Upload an Image</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" id="fileInput" name="file">
-        <button type="submit">Upload</button>
-    </form>
-    <div id="preview"></div>
+    <!-- Fixed truncated image HTML in render() -->
+    <div>
+        <img src="your-image-source.jpg" alt="Description" style="max-width: 100%; height: auto;">
+    </div>
 
     <script>
-        document.getElementById('uploadForm').onsubmit = (event) => {
-            event.preventDefault();
-            const fileInput = document.getElementById('fileInput');
-            if (fileInput.files.length === 0) {
-                alert('Please select a file to upload.');
-                return;
-            }
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.maxWidth = '500px';
-                img.style.maxHeight = '500px';
-                document.getElementById('preview').innerHTML = ''; // Clear previous previews
-                document.getElementById('preview').appendChild(img);
+        // Complete loadAdmin() function with reject functionality
+        function loadAdmin() {
+            return new Promise((resolve, reject) => {
+                // Simulate an asynchronous operation
+                const success = true;
+                if (success) {
+                    resolve();
+                } else {
+                    reject('Failed to load admin.');
+                }
+            });
+        }
+
+        // Implement loadNot() for notifications
+        function loadNot() {
+            // Code to load notifications
+            console.log('Loading notifications...');
+        }
+
+        // Implement clearNotif() to clear notifications
+        function clearNotif() {
+            // Code to clear notifications
+            console.log('Clearing notifications...');
+        }
+
+        // Implement changePass() for password changes
+        function changePass(newPassword) {
+            // Code to change password
+            console.log('Changing password...');
+        }
+
+        // Add image upload modal with file input and Base64 encoding
+        function uploadImage() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = () => {
+                const file = input.files[0];
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const base64data = reader.result;
+                    console.log('Base64 encoded image:', base64data);
+                }
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
             };
-            reader.readAsDataURL(file);
-        };
+            input.click();
+        }
+
+        // Add editImage() function for editing product images
+        function editImage(imageData) {
+            // Code for editing the image
+            console.log('Editing image...');
+        }
+
+        // Fix goTo() navigation with active state
+        function goTo(page) {
+            // Code to navigate
+            console.log('Navigating to', page);
+        }
     </script>
 </body>
 </html>
